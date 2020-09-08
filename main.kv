@@ -1,0 +1,262 @@
+<HomeScreen>:
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:1
+            padding: 15, 15
+            spacing: 20, 20
+            Image:
+                source: 'tweet.png'
+                size: self.texture_size
+            Image:
+                source: 'bulbul.png'
+                size: self.texture_size
+            Label:
+                text:"Convert your spookn words to text"
+                font_size:'22sp'
+            RelativeLayout:
+                Button: 
+                    text:"Login"
+                    on_press:root.to_login_page()
+                    size_hint: 0.3,0.5
+                    pos_hint:{'center_x':0.5 ,'center_y':0.6  }
+            RelativeLayout:
+                Button: 
+                    text:"Sign Up"
+                    on_press:root.sign_up()
+                    size_hint: 0.3,0.5
+                    pos_hint:{'center_x':0.5 ,'center_y':0.6  }
+
+
+<LoginScreen>:
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:1
+            padding: 15, 15
+            spacing: 20, 20
+            Image:
+                source: 'tweet.png'
+                size: self.texture_size
+            Image:
+                source: 'bulbul.png'
+                size: self.texture_size
+            Label:
+                text:"User Login"
+                font_size:'22sp'
+            RelativeLayout:   
+                TextInput:
+                    id:username
+                    hint_text:"Enter Username"
+                    size_hint: 0.2,0.2
+                    pos_hint:{'center_x':0.5 ,'center_y':1}
+                    size_hint: 0.3,0.6
+            RelativeLayout:   
+                TextInput:
+                    id:password
+                    password:True
+                    hint_text:"Password"
+                    size_hint: 0.2,0.2
+                    pos_hint:{'center_x':0.5 ,'center_y':1}
+                    size_hint: 0.3,0.6
+            
+            RelativeLayout:
+                Button: 
+                    text:"Login"
+                    on_press:root.login(root.ids.username.text, root.ids.password.text)
+                    size_hint: 0.3,0.5
+                    pos_hint:{'center_x':0.5 ,'center_y':0.6  }
+            Label:
+                id:login_wrong
+                text:""
+        GridLayout:
+            cols:2
+            size_hint:0.2, 0.2
+            padding: 15, 15
+            spacing: 20, 20
+            Button: 
+                text:"Forget Password?"
+                background_color: 1,1,1,0
+                opacity: 1 if self.state=='normal' else 0.5
+                color: 0.1, 0.7, 1, 1
+            Button: 
+                text:"Sign Up"
+                background_color: 1,1,1,0
+                on_press: root.sign_up()
+                opacity: 1 if self.state=='normal' else 0.5
+                color: 0.1, 0.7, 1, 1
+
+
+<SignUpScreen>:
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:1
+            padding: 15, 15
+            spacing: 20, 20
+            Image:
+                source: 'tweet.png'
+                size: self.texture_size
+            Image:
+                source: 'bulbul.png'
+                size: self.texture_size
+            Label:
+                text:"Sign Up"
+                font_size:'22sp'
+            RelativeLayout:   
+                TextInput:
+                    id:username
+                    hint_text:"Enter Username"
+                    size_hint: 0.2,0.2
+                    pos_hint:{'center_x':0.5 ,'center_y':1}
+                    size_hint: 0.3,0.6
+            RelativeLayout:   
+                TextInput:
+                    id:password
+                    hint_text:"Enter Password"
+                    size_hint: 0.2,0.2
+                    pos_hint:{'center_x':0.5 ,'center_y':1}
+                    size_hint: 0.3,0.6
+            RelativeLayout:
+                Button:
+                    text:"Sign Up"
+                    on_press: root.add_user(root.ids.username.text , root.ids.password.text)
+                    size_hint: 0.3,0.5
+                    pos_hint:{'center_x':0.5 ,'center_y':0.6  }
+            Label:
+                id:signup_wrong
+                text:""
+        GridLayout:
+            cols:2
+            size_hint:0.2, 0.2
+            padding: 15, 15
+            spacing: 20, 20
+            Button:
+                text:""
+                background_color: 1,1,1,0
+               
+                opacity: 1 if self.state=='normal' else 0.5
+                color: 0.1, 0.7, 1, 1 
+            Button:
+                text:"Login"
+                background_color: 1,1,1,0
+                on_press:root.to_login_page()
+                opacity: 1 if self.state=='normal' else 0.5
+                color: 0.1, 0.7, 1, 1
+            
+                    
+
+
+               
+        
+<SpeechToText>:
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:1
+            RelativeLayout:
+                Button:
+                    text:"Logout"
+                    on_press: root.logout()
+                    size_hint: 0.3,0.5
+                    pos_hint:{'center_x':0.9 ,'center_y':0.9  }
+                    background_color: 1,1,1,0
+                    opacity: 1 if self.state=='normal' else 0.5
+                    color: 0.1, 0.7, 1, 1
+            Image:
+                source: 'tweet.png'
+                size: self.texture_size
+            Image:
+                source: 'bulbul.png'
+                size: self.texture_size
+            Label:
+                text:"Convert your spookn words to text"
+                font_size:'22sp'
+            GridLayout:
+                cols:5
+                Label:
+                    text:"Choose Language: "
+                    pos_hint:{'center_x':0.2 ,'center_y':0.2  }
+                CheckBox:
+                    id:arabic
+                    on_press:root.arabicSelected()
+                    group:"Language"
+                    pos_hint:{'center_x':0.3 ,'center_y':0.2  }
+                    size_hint:0.2,0.2
+                Label:
+                    text:root.Status
+                    pos_hint:{'center_x':0.4 ,'center_y':0.2  }
+                 
+                CheckBox:
+                    id:english
+                    group:"Language"
+                    pos_hint:{'center_x':0.5 ,'center_y':0.2  }
+                    size_hint:0.2,0.2
+                Label:
+                    text:root.Status2
+                    pos_hint:{'center_x':0.6 ,'center_y':0.2  }
+            GridLayout:
+                cols:5
+                Label:
+                    text:"Input Type: "
+                    pos_hint:{'center_x':0.2 ,'center_y':0.2  }
+                CheckBox:
+                    id: microphone 
+                    group:"InputType"
+                    pos_hint:{'center_x':0.3 ,'center_y':0.2  }
+                    size_hint:0.2,0.2
+                Label:
+                    text:root.Status3
+                    pos_hint:{'center_x':0.4 ,'center_y':0.2  }
+                CheckBox:
+                    id: file
+                    group:"InputType"
+                    pos_hint:{'center_x':0.5 ,'center_y':0.2  }
+                    size_hint:0.2,0.2
+                Label:
+                    text:root.Status4
+                    pos_hint:{'center_x':0.6 ,'center_y':0.2 }
+            RelativeLayout:
+                Label:
+                    text:"Enter File Name:"
+                    size_hint: 0.3,0.6
+                    pos_hint:{'center_x':0.15,'center_y':0.1  }
+                Label:
+                    text:""
+                Label:
+                    text:""
+            RelativeLayout:   
+                TextInput:
+                    id:fileinput
+                    size_hint: 0.2,0.2
+                    pos_hint:{'center_x':0.5 ,'center_y':1}
+                    size_hint: 0.3,0.6
+            RelativeLayout:
+                Button:
+                    text:"start"
+                    on_press:root.startRecording(root.ids.fileinput.text)
+                    size_hint: 0.3,0.6
+                    pos_hint:{'center_x':0.5 ,'center_y':0.6  }
+            Label:
+                id:say
+                font_name:'DejaVuSans.ttf'
+                text:""
+            Label:
+                id:arabicLabel
+                font_name:'Shahab-Regular-1.ttf'
+                text:""
+            Label:
+                id:englishLabel
+                font_name:'DejaVuSans.ttf'
+                text:""
+
+<RootWidget>:
+    HomeScreen:
+        name: "home_screen"
+    LoginScreen:
+        name: "login_screen"
+    SignUpScreen:
+        name: "sign_up_screen"
+    SpeechToText:
+        name: "speech_to_text"
+    
